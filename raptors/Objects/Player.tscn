@@ -52,7 +52,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 56.9406, 47.4793 )
+extents = Vector2( 29.1955, 47.4793 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -62,7 +62,7 @@ position = Vector2( 0.630249, -66.8064 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 27
+frame = 37
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,11 +70,11 @@ position = Vector2( 0.630249, -75.6299 )
 shape = SubResource( 2 )
 
 [node name="SupportFinder2" type="RayCast2D" parent="."]
-position = Vector2( -17.8112, -66.8064 )
+position = Vector2( -28.6184, -66.8064 )
 enabled = true
 cast_to = Vector2( 0, 60 )
 
 [node name="SupportFinder" type="RayCast2D" parent="."]
-position = Vector2( 41.3952, -66.8064 )
+position = Vector2( 30.588, -66.8064 )
 enabled = true
 cast_to = Vector2( 0, 60 )

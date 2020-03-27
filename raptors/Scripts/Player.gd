@@ -6,6 +6,7 @@ export var jump_force = 650
 
 var velocity = Vector2.ZERO
 var move_dir
+var facing_dir = 1
 
 var on_ground_timer = 0.0
 var soft_grounded = false
@@ -27,8 +28,9 @@ func is_on_ground():
 func resolve_support_position():
 	if is_on_ground() and velocity.y > 0.0:
 		var ground_y = max(support.get_collision_point().y, support2.get_collision_point().y)
-		global_position.y = ground_y - support.cast_to.y * -0.2
-		velocity.y = 0
+		if global_position.y > ground_y - support.cast_to.y * 0.2:
+			global_position.y = ground_y - support.cast_to.y * -0.2
+			velocity.y = 0
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -46,7 +48,9 @@ func _physics_process(delta):
 		soft_grounded = false
 		
 	
-	velocity = move_and_slide(velocity)
+	#velocity = move_and_slide(velocity)
+	#move_and_collide(velocity * delta)
+	move_and_slide(velocity)
 
 
 func _input(event):
@@ -58,7 +62,7 @@ func _input(event):
 
 func jump():
 	velocity.y = -jump_force
-	velocity.x = move_dir * jump_force * 0.8
+	#velocity.x = facing_dir * jump_force * 0.8 for attack.
 
 
 func get_input():
@@ -66,9 +70,13 @@ func get_input():
 	var right = Input.is_action_pressed("move_right")
 	
 	move_dir = int(right) - int(left)
-	velocity.x = lerp(velocity.x, speed * move_dir, 0.7 if is_on_ground() else 0.3)
-	if not left and not right and is_on_ground():
-		velocity.x = 0
+	if soft_grounded and not velocity.y < 0:
+		velocity.x = lerp(velocity.x, speed * move_dir, 0.7)
+	else:
+		velocity.x = lerp(velocity.x, speed * move_dir, 0.3)
+		
+	if left or right:
+		facing_dir = move_dir
 	
 	if right and sprite.flip_h:
 		sprite.set_flip_h(false)
