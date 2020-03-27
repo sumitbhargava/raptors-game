@@ -62,7 +62,6 @@ func _input(event):
 
 func jump():
 	velocity.y = -jump_force
-	#velocity.x = facing_dir * jump_force * 0.8 for attack.
 
 
 func get_input():
