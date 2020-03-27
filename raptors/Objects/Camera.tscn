@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( 0.630249, -252.304 )
+current = true
+
+[node name="target_offset" type="Node2D" parent="."]
+position = Vector2( 0, 185.497 )

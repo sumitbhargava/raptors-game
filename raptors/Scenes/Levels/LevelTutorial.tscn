@@ -1,28 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Textures/background.png" type="Texture" id=1]
+[ext_resource path="res://Textures/2d_level.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
-
-
-
+[ext_resource path="res://Objects/Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3866.18, 141.568 )
+extents = Vector2( 900.586, 141.568 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 235.802, 141.568 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1057.23, 141.568 )
 
 [node name="LevelTutorial" type="Node2D"]
 
+[node name="Camera2D" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+target_path = NodePath("../Player")
+
 [node name="background" type="Sprite" parent="."]
+position = Vector2( 2484.82, 329.575 )
 texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 7680, 1080 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 603.083, 571.451 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 2484.82, 0 )
+position = Vector2( 2490.16, -337 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1327.43, 1045.85 )
+position = Vector2( -1686.97, 1045.85 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -171.189, 1045.85 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1479.42, 1045.85 )
+shape = SubResource( 4 )
