@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/background.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
+
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3866.18, 141.568 )
+
+[node name="LevelTutorial" type="Node2D"]
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 7680, 1080 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 603.083, 571.451 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 2484.82, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1327.43, 1045.85 )
+shape = SubResource( 1 )

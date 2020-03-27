@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/raptor_bot_story_concept_art.png" type="Texture" id=1]
+[ext_resource path="res://ui/Untitled19_20200326181209.png" type="Texture" id=2]
+[ext_resource path="res://ui/Untitled19_20200326181218.png" type="Texture" id=3]
+[ext_resource path="res://ui/Untitled19_20200326181225.png" type="Texture" id=4]
+
+[sub_resource type="Theme" id=1]
+
+[node name="menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 1025.74 ]
+}
+
+[node name="bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="1" type="MarginContainer" parent="."]
+anchor_top = 0.785
+anchor_right = 0.555
+anchor_bottom = 1.0
+margin_left = 18.0
+margin_top = -3.05176e-05
+margin_right = -0.320007
+margin_bottom = 11.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="HBoxContainer" parent="1"]
+margin_right = 550.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+size_flags_horizontal = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="a" type="TextureButton" parent="1/2"]
+margin_right = 183.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+size_flags_horizontal = 3
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="b" type="TextureButton" parent="1/2"]
+margin_left = 183.0
+margin_right = 366.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+size_flags_horizontal = 3
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="c" type="TextureButton" parent="1/2"]
+margin_left = 366.0
+margin_right = 550.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 140, 140 )
+size_flags_horizontal = 3
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
