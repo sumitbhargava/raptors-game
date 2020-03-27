@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-82a60f56845c16643a7b596b159e154d.stex"
+path="res://.import/tile019.png-50589dbf10930342188255fdf32b243d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/idle.png"
-dest_files=[ "res://.import/idle.png-82a60f56845c16643a7b596b159e154d.stex" ]
+source_file="res://player/sprites/idle/tile019.png"
+dest_files=[ "res://.import/tile019.png-50589dbf10930342188255fdf32b243d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
