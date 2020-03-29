@@ -2,9 +2,10 @@ extends KinematicBody2D
 
 export var speed = 200
 export var gravity = 600
-export var jump_force = 650
+export var jump_force = 580
 
 var velocity = Vector2.ZERO
+var boost = Vector2.ZERO
 var move_dir
 var facing_dir = 1
 
@@ -28,7 +29,7 @@ func is_on_ground():
 func resolve_support_position():
 	if is_on_ground() and velocity.y > 0.0:
 		var ground_y = max(support.get_collision_point().y, support2.get_collision_point().y)
-		if global_position.y > ground_y - support.cast_to.y * 0.2:
+		if ground_y > global_position.y:
 			global_position.y = ground_y - support.cast_to.y * -0.2
 			velocity.y = 0
 
@@ -37,7 +38,7 @@ func _physics_process(delta):
 	
 	get_input()
 	
-	resolve_support_position()	
+	resolve_support_position()
 	
 	on_ground_timer -= delta
 	
@@ -50,19 +51,20 @@ func _physics_process(delta):
 	
 	#velocity = move_and_slide(velocity)
 	#move_and_collide(velocity * delta)
-	move_and_slide(velocity)
+	move_and_slide(velocity + boost)
+	boost = boost * delta * delta
 
 
 func _input(event):
 	if event.is_action_pressed("jump"):
-		if soft_grounded:
+		if soft_grounded and not velocity.y < 0:
 			jump()
 			on_ground_timer = 0
 			soft_grounded = false
 
 func jump():
-	velocity.y = -jump_force
-
+	velocity.y = -jump_force * max(int(not(abs(move_dir))), 0.9)
+	velocity.x += move_dir * jump_force * 0.2
 
 func get_input():
 	var left = Input.is_action_pressed("move_left")
@@ -72,7 +74,8 @@ func get_input():
 	if soft_grounded and not velocity.y < 0:
 		velocity.x = lerp(velocity.x, speed * move_dir, 0.7)
 	else:
-		velocity.x = lerp(velocity.x, speed * move_dir, 0.3)
+		if velocity.y > 0:
+			velocity.x = lerp(velocity.x, speed * move_dir, 0.05)
 		
 	if left or right:
 		facing_dir = move_dir
