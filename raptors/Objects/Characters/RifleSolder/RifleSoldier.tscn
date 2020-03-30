@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/Characters/RifleSoldier/idle/idle 00.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Characters/RifleSoldier/idle/idle 03.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/Characters/RifleSoldier/run/run 04.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Characters/RifleSoldier/run/run 05.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Characters/RifleSoldier/run/run 00.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Character.gd" type="Script" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -24,14 +25,29 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.721, 69.2778 )
+
+[node name="Soldier" type="KinematicBody2D"]
+script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -559.961 )
+position = Vector2( 0, -94.8691 )
+scale = Vector2( 0.164, 0.164 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 flip_h = true
 
 [node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -108.403 )
+shape = SubResource( 2 )
+
+[node name="SupportFinder" type="RayCast2D" parent="."]
+position = Vector2( -14.2161, -55.256 )
+
+[node name="SupportFinder2" type="RayCast2D" parent="."]
+position = Vector2( 14.6342, -55.256 )

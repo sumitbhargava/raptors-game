@@ -36,6 +36,7 @@ func _ready():
 func is_on_ground():
 	return support.is_colliding() or support2.is_colliding()
 	
+#Todo: Change to Area, cuz 2 raycast aren't enought for skinny colliders
 func resolve_support_position():
 	if is_on_ground() and velocity.y > 0.0:
 		var ground_y = max(support.get_collision_point().y, support2.get_collision_point().y)
@@ -43,11 +44,14 @@ func resolve_support_position():
 			global_position.y = ground_y - support.cast_to.y * -0.2
 			velocity.y = 0
 
-
 func _physics_process(delta):
 	velocity.y += gravity * delta
 	
+	if is_on_ground() and velocity.y > 0:
+		velocity.y = 0
+	
 	process_input()
+	
 	resolve_support_position()
 	
 	
@@ -82,8 +86,8 @@ func jump():
 	velocity.x += move_dir * jump_force * 0.2
 
 func process_input():
-	var left = Input.is_action_pressed("move_left")
-	var right = Input.is_action_pressed("move_right")
+	var left = 0
+	var right = 0
 	
 	move_dir = int(right) - int(left)
 	if soft_grounded and not velocity.y < 0:
@@ -92,7 +96,7 @@ func process_input():
 		if velocity.y > 0:
 			velocity.x = lerp(velocity.x, speed * move_dir, 0.05)
 		
-	if left or right:
+	if move_dir:
 		facing_dir = move_dir
 	
 	if right and sprite.flip_h:

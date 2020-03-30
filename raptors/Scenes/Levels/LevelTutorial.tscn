@@ -107,6 +107,5 @@ text = "ATTACK WITH J AND K KEYS"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerInfo3"]
 shape = SubResource( 4 )
 
-[node name="Node2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 914.93, 571.451 )
-scale = Vector2( 0.163851, 0.163851 )
+[node name="Soldier" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1428.23, 530.008 )
